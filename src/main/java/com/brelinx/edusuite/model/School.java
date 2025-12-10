@@ -1,65 +1,80 @@
 package com.brelinx.edusuite.model;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.index.Indexed;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity
-@Table(name = "schools")
+@Document(collection = "schools")
 @Getter
 @Setter
 public class School extends BaseEntity {
 
-    @Column(nullable = false, unique = true)
+    @Indexed(unique = true)
     private String name;
 
-    @Column(name = "logo_url")
     private String logoUrl;
 
     private String address;
 
     private String contact;
 
-    @OneToMany(mappedBy = "school", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Student> students = new HashSet<>();
+    @DBRef
+    private List<Student> students = new ArrayList<>();
 
-    @OneToMany(mappedBy = "school", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Teacher> teachers = new HashSet<>();
+    @DBRef
+    private List<Teacher> teachers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "school", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Course> courses = new HashSet<>();
+    @DBRef
+    private List<Course> courses = new ArrayList<>();
 
-    // Helper methods for bidirectional relationships
+    // Helper methods for relationships
     public void addStudent(Student student) {
+        if (students == null) {
+            students = new ArrayList<>();
+        }
         students.add(student);
-        student.setSchool(this);
+        student.setSchoolId(this.getId());
     }
 
     public void removeStudent(Student student) {
-        students.remove(student);
-        student.setSchool(null);
+        if (students != null) {
+            students.remove(student);
+            student.setSchoolId(null);
+        }
     }
 
     public void addTeacher(Teacher teacher) {
+        if (teachers == null) {
+            teachers = new ArrayList<>();
+        }
         teachers.add(teacher);
-        teacher.setSchool(this);
+        teacher.setSchoolId(this.getId());
     }
 
     public void removeTeacher(Teacher teacher) {
-        teachers.remove(teacher);
-        teacher.setSchool(null);
+        if (teachers != null) {
+            teachers.remove(teacher);
+            teacher.setSchoolId(null);
+        }
     }
 
     public void addCourse(Course course) {
+        if (courses == null) {
+            courses = new ArrayList<>();
+        }
         courses.add(course);
-        course.setSchool(this);
+        course.setSchoolId(this.getId());
     }
 
     public void removeCourse(Course course) {
-        courses.remove(course);
-        course.setSchool(null);
+        if (courses != null) {
+            courses.remove(course);
+            course.setSchoolId(null);
+        }
     }
 }

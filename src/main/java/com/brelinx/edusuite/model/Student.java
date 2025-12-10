@@ -1,29 +1,27 @@
 package com.brelinx.edusuite.model;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity
-@Table(name = "students")
+@Document(collection = "students")
 @Getter
 @Setter
 public class Student extends BaseEntity {
 
-    @Column(nullable = false)
     private String firstName;
 
-    @Column(nullable = false)
     private String lastName;
 
-    @Column(unique = true, nullable = false)
+    @Indexed(unique = true)
     private String email;
 
-    @Column(unique = true, nullable = false)
+    @Indexed(unique = true)
     private String studentId;
 
     private LocalDate dateOfBirth;
@@ -32,22 +30,24 @@ public class Student extends BaseEntity {
 
     private String address;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "school_id")
-    private School school;
+    private String schoolId;
 
-    @ManyToMany(mappedBy = "students")
-    private Set<Course> courses = new HashSet<>();
+    private List<String> courseIds = new ArrayList<>();
 
-    // Helper methods for bidirectional relationships
-    public void addCourse(Course course) {
-        courses.add(course);
-        course.getStudents().add(this);
+    // Helper methods
+    public void addCourseId(String courseId) {
+        if (courseIds == null) {
+            courseIds = new ArrayList<>();
+        }
+        if (!courseIds.contains(courseId)) {
+            courseIds.add(courseId);
+        }
     }
 
-    public void removeCourse(Course course) {
-        courses.remove(course);
-        course.getStudents().remove(this);
+    public void removeCourseId(String courseId) {
+        if (courseIds != null) {
+            courseIds.remove(courseId);
+        }
     }
 
     public String getFullName() {
