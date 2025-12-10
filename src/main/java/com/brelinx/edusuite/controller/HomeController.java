@@ -33,6 +33,7 @@ public class HomeController {
     }
 
     @GetMapping("/api")
+    @ResponseBody
     public Map<String, Object> apiInfo() {
         Map<String, Object> response = new HashMap<>();
         response.put("name", "Brelinx EduSuite API");
