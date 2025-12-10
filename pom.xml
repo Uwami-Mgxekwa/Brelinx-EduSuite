@@ -16,7 +16,7 @@
 	<description>Student Management System</description>
 
 	<properties>
-		<java.version>24</java.version>
+		<java.version>17</java.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
 		<springdoc.version>2.3.0</springdoc.version>
 	</properties>
