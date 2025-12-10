@@ -1,23 +1,22 @@
 package com.brelinx.edusuite.model;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity
-@Table(name = "courses")
+@Document(collection = "courses")
 @Getter
 @Setter
 public class Course extends BaseEntity {
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(unique = true, nullable = false)
+    @Indexed(unique = true)
     private String courseCode;
 
     private String description;
@@ -28,30 +27,25 @@ public class Course extends BaseEntity {
 
     private LocalDate endDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "school_id")
-    private School school;
+    private String schoolId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "teacher_id")
-    private Teacher teacher;
+    private String teacherId;
 
-    @ManyToMany
-    @JoinTable(
-        name = "course_students",
-        joinColumns = @JoinColumn(name = "course_id"),
-        inverseJoinColumns = @JoinColumn(name = "student_id")
-    )
-    private Set<Student> students = new HashSet<>();
+    private List<String> studentIds = new ArrayList<>();
 
-    // Helper methods for bidirectional relationships
-    public void addStudent(Student student) {
-        students.add(student);
-        student.getCourses().add(this);
+    // Helper methods
+    public void addStudentId(String studentId) {
+        if (studentIds == null) {
+            studentIds = new ArrayList<>();
+        }
+        if (!studentIds.contains(studentId)) {
+            studentIds.add(studentId);
+        }
     }
 
-    public void removeStudent(Student student) {
-        students.remove(student);
-        student.getCourses().remove(this);
+    public void removeStudentId(String studentId) {
+        if (studentIds != null) {
+            studentIds.remove(studentId);
+        }
     }
 }
