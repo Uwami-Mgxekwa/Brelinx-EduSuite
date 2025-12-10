@@ -48,6 +48,7 @@ public class StudentController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Student> getStudentById(@PathVariable String id) {
+        @SuppressWarnings("null")
         Optional<Student> student = studentRepository.findById(id);
         return student.map(ResponseEntity::ok)
                      .orElse(ResponseEntity.notFound().build());
@@ -63,6 +64,7 @@ public class StudentController {
         return ResponseEntity.ok(savedStudent);
     }
 
+    @SuppressWarnings("null")
     @PutMapping("/{id}")
     public ResponseEntity<Student> updateStudent(@PathVariable String id, @RequestBody Student student) {
         if (!studentRepository.existsById(id)) {
@@ -73,6 +75,7 @@ public class StudentController {
         return ResponseEntity.ok(updatedStudent);
     }
 
+    @SuppressWarnings("null")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteStudent(@PathVariable String id) {
         if (!studentRepository.existsById(id)) {

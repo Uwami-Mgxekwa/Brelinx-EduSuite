@@ -43,6 +43,7 @@ public class SchoolController {
 
     @GetMapping("/{id}")
     public ResponseEntity<School> getSchoolById(@PathVariable String id) {
+        @SuppressWarnings("null")
         Optional<School> school = schoolRepository.findById(id);
         return school.map(ResponseEntity::ok)
                     .orElse(ResponseEntity.notFound().build());
@@ -57,6 +58,7 @@ public class SchoolController {
         return ResponseEntity.ok(savedSchool);
     }
 
+    @SuppressWarnings("null")
     @PutMapping("/{id}")
     public ResponseEntity<School> updateSchool(@PathVariable String id, @RequestBody School school) {
         if (!schoolRepository.existsById(id)) {
@@ -67,6 +69,7 @@ public class SchoolController {
         return ResponseEntity.ok(updatedSchool);
     }
 
+    @SuppressWarnings("null")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSchool(@PathVariable String id) {
         if (!schoolRepository.existsById(id)) {
