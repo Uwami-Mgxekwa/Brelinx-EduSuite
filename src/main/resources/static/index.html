@@ -245,8 +245,8 @@
                         <li>Test API endpoints</li>
                     </ul>
                     <button class="btn" onclick="loadDashboardData()">🔄 Refresh Data</button>
-                    <button class="btn" onclick="window.open('/h2-console', '_blank')">🗄️ Database Console</button>
                     <button class="btn" onclick="window.open('/swagger-ui.html', '_blank')">📚 API Docs</button>
+                    <button class="btn" onclick="showMongoInfo()">🍃 MongoDB Info</button>
                 </div>
             </div>
             
@@ -458,6 +458,11 @@
             const element = document.getElementById(elementId);
             const className = type === 'success' ? 'success' : 'error';
             element.innerHTML = `<div class="${className}">${typeof message === 'string' ? message : JSON.stringify(message)}</div>`;
+        }
+        
+        // MongoDB Info function
+        function showMongoInfo() {
+            alert('Connected to MongoDB Atlas Cloud Database\nDatabase: brelinx_edusuite\nData is persistent and secure!');
         }
         
         // Load initial data when page loads
