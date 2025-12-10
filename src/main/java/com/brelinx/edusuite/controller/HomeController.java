@@ -1,17 +1,24 @@
 package com.brelinx.edusuite.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
+@Controller
 public class HomeController {
 
     @GetMapping("/")
-    public Map<String, Object> home() {
+    public String home() {
+        return "index.html";
+    }
+
+    @GetMapping("/api/status")
+    @ResponseBody
+    public Map<String, Object> apiStatus() {
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Welcome to Brelinx EduSuite API!");
         response.put("timestamp", LocalDateTime.now());
