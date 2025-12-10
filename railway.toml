@@ -1,0 +1,8 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar target/edusuite-0.0.1-SNAPSHOT.jar"
+
+[env]
+SPRING_PROFILES_ACTIVE = "prod"
