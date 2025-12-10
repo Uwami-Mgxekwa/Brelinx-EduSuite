@@ -15,7 +15,6 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/swagger-ui.html").permitAll()
                 .requestMatchers("/api-docs/**").permitAll()
@@ -24,12 +23,8 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
             )
             .csrf(csrf -> csrf
-                .ignoringRequestMatchers("/h2-console/**")
                 .ignoringRequestMatchers("/api/**")
                 .disable()
-            )
-            .headers(headers -> headers
-                .frameOptions().sameOrigin() // Allow H2 console to be displayed in frames
             );
         
         return http.build();

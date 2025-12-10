@@ -1,65 +1,84 @@
 package com.brelinx.edusuite.controller;
 
 import com.brelinx.edusuite.model.Student;
+import com.brelinx.edusuite.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
 
+    @Autowired
+    private StudentRepository studentRepository;
+
     @GetMapping
     public ResponseEntity<List<Student>> getAllStudents() {
-        List<Student> students = new ArrayList<>();
+        List<Student> students = studentRepository.findAll();
         
-        // Sample data for testing
-        Student student1 = new Student();
-        student1.setFirstName("John");
-        student1.setLastName("Doe");
-        student1.setEmail("john.doe@student.edu");
-        student1.setStudentId("STU001");
-        student1.setDateOfBirth(LocalDate.of(2000, 5, 15));
-        
-        Student student2 = new Student();
-        student2.setFirstName("Jane");
-        student2.setLastName("Smith");
-        student2.setEmail("jane.smith@student.edu");
-        student2.setStudentId("STU002");
-        student2.setDateOfBirth(LocalDate.of(1999, 8, 22));
-        
-        students.add(student1);
-        students.add(student2);
+        // If no students exist, create some sample data
+        if (students.isEmpty()) {
+            Student student1 = new Student();
+            student1.setFirstName("John");
+            student1.setLastName("Doe");
+            student1.setEmail("john.doe@student.edu");
+            student1.setStudentId("STU001");
+            student1.setDateOfBirth(LocalDate.of(2000, 5, 15));
+            
+            Student student2 = new Student();
+            student2.setFirstName("Jane");
+            student2.setLastName("Smith");
+            student2.setEmail("jane.smith@student.edu");
+            student2.setStudentId("STU002");
+            student2.setDateOfBirth(LocalDate.of(1999, 8, 22));
+            
+            studentRepository.save(student1);
+            studentRepository.save(student2);
+            
+            students = studentRepository.findAll();
+        }
         
         return ResponseEntity.ok(students);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
-        Student student = new Student();
-        student.setFirstName("Sample");
-        student.setLastName("Student " + id);
-        student.setEmail("student" + id + "@school.edu");
-        student.setStudentId("STU" + String.format("%03d", id));
-        
-        return ResponseEntity.ok(student);
+    public ResponseEntity<Student> getStudentById(@PathVariable String id) {
+        Optional<Student> student = studentRepository.findById(id);
+        return student.map(ResponseEntity::ok)
+                     .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<String> createStudent(@RequestBody Student student) {
-        return ResponseEntity.ok("Student created successfully: " + student.getFullName());
+    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
+        if (studentRepository.existsByEmail(student.getEmail()) || 
+            studentRepository.existsByStudentId(student.getStudentId())) {
+            return ResponseEntity.badRequest().build();
+        }
+        Student savedStudent = studentRepository.save(student);
+        return ResponseEntity.ok(savedStudent);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateStudent(@PathVariable Long id, @RequestBody Student student) {
-        return ResponseEntity.ok("Student with ID " + id + " updated successfully");
+    public ResponseEntity<Student> updateStudent(@PathVariable String id, @RequestBody Student student) {
+        if (!studentRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        student.setId(id);
+        Student updatedStudent = studentRepository.save(student);
+        return ResponseEntity.ok(updatedStudent);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteStudent(@PathVariable Long id) {
-        return ResponseEntity.ok("Student with ID " + id + " deleted successfully");
+    public ResponseEntity<Void> deleteStudent(@PathVariable String id) {
+        if (!studentRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        studentRepository.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }
