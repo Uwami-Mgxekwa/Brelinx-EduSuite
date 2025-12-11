@@ -328,6 +328,158 @@
                 </div>
             </div>
             
+            <!-- Teachers Tab -->
+            <div id="teachers" class="tab-content">
+                <div class="card">
+                    <h3>👨‍🏫 Teacher Management</h3>
+                    <button class="btn" onclick="loadTeachers()">📋 Load All Teachers</button>
+                    <button class="btn" onclick="showAddTeacherForm()">➕ Add New Teacher</button>
+                    
+                    <div id="addTeacherForm" style="display: none; margin-top: 20px;">
+                        <h4>Add New Teacher</h4>
+                        <div class="form-group">
+                            <label>First Name:</label>
+                            <input type="text" id="teacherFirstName" placeholder="Enter first name">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name:</label>
+                            <input type="text" id="teacherLastName" placeholder="Enter last name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="email" id="teacherEmail" placeholder="Enter email address">
+                        </div>
+                        <div class="form-group">
+                            <label>Employee ID:</label>
+                            <input type="text" id="teacherEmployeeId" placeholder="Enter employee ID">
+                        </div>
+                        <div class="form-group">
+                            <label>Department:</label>
+                            <input type="text" id="teacherDepartment" placeholder="Enter department">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number:</label>
+                            <input type="text" id="teacherPhone" placeholder="Enter phone number">
+                        </div>
+                        <button class="btn" onclick="addTeacher()">💾 Save Teacher</button>
+                        <button class="btn" onclick="hideAddTeacherForm()" style="background: #6c757d;">❌ Cancel</button>
+                    </div>
+                    
+                    <div id="teachersData" class="data-display"></div>
+                </div>
+            </div>
+            
+            <!-- Courses Tab -->
+            <div id="courses" class="tab-content">
+                <div class="card">
+                    <h3>📚 Course Management</h3>
+                    <button class="btn" onclick="loadCourses()">📋 Load All Courses</button>
+                    <button class="btn" onclick="showAddCourseForm()">➕ Add New Course</button>
+                    
+                    <div id="addCourseForm" style="display: none; margin-top: 20px;">
+                        <h4>Add New Course</h4>
+                        <div class="form-group">
+                            <label>Course Name:</label>
+                            <input type="text" id="courseName" placeholder="Enter course name">
+                        </div>
+                        <div class="form-group">
+                            <label>Course Code:</label>
+                            <input type="text" id="courseCode" placeholder="Enter course code">
+                        </div>
+                        <div class="form-group">
+                            <label>Description:</label>
+                            <input type="text" id="courseDescription" placeholder="Enter course description">
+                        </div>
+                        <div class="form-group">
+                            <label>Credits:</label>
+                            <input type="number" id="courseCredits" placeholder="Enter credits">
+                        </div>
+                        <button class="btn" onclick="addCourse()">💾 Save Course</button>
+                        <button class="btn" onclick="hideAddCourseForm()" style="background: #6c757d;">❌ Cancel</button>
+                    </div>
+                    
+                    <div id="coursesData" class="data-display"></div>
+                </div>
+            </div>
+            
+            <!-- Grades Tab -->
+            <div id="grades" class="tab-content">
+                <div class="card">
+                    <h3>📊 Grade Management</h3>
+                    <button class="btn" onclick="loadGrades()">📋 Load All Grades</button>
+                    <button class="btn" onclick="showAddGradeForm()">➕ Add New Grade</button>
+                    
+                    <div id="addGradeForm" style="display: none; margin-top: 20px;">
+                        <h4>Add New Grade</h4>
+                        <div class="form-group">
+                            <label>Assignment Name:</label>
+                            <input type="text" id="gradeAssignmentName" placeholder="Enter assignment name">
+                        </div>
+                        <div class="form-group">
+                            <label>Assignment Type:</label>
+                            <select id="gradeAssignmentType" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                                <option value="EXAM">Exam</option>
+                                <option value="QUIZ">Quiz</option>
+                                <option value="HOMEWORK">Homework</option>
+                                <option value="PROJECT">Project</option>
+                                <option value="LAB">Lab</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Score:</label>
+                            <input type="number" id="gradeScore" placeholder="Enter score" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label>Max Score:</label>
+                            <input type="number" id="gradeMaxScore" placeholder="Enter max score" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label>Comments:</label>
+                            <input type="text" id="gradeComments" placeholder="Enter comments">
+                        </div>
+                        <button class="btn" onclick="addGrade()">💾 Save Grade</button>
+                        <button class="btn" onclick="hideAddGradeForm()" style="background: #6c757d;">❌ Cancel</button>
+                    </div>
+                    
+                    <div id="gradesData" class="data-display"></div>
+                </div>
+            </div>
+            
+            <!-- Attendance Tab -->
+            <div id="attendance" class="tab-content">
+                <div class="card">
+                    <h3>📅 Attendance Management</h3>
+                    <button class="btn" onclick="loadAttendance()">📋 Load All Attendance</button>
+                    <button class="btn" onclick="showAddAttendanceForm()">➕ Record Attendance</button>
+                    <button class="btn" onclick="quickCheckIn()">⚡ Quick Check-In</button>
+                    
+                    <div id="addAttendanceForm" style="display: none; margin-top: 20px;">
+                        <h4>Record Attendance</h4>
+                        <div class="form-group">
+                            <label>Date:</label>
+                            <input type="date" id="attendanceDate">
+                        </div>
+                        <div class="form-group">
+                            <label>Status:</label>
+                            <select id="attendanceStatus" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                                <option value="PRESENT">Present</option>
+                                <option value="ABSENT">Absent</option>
+                                <option value="LATE">Late</option>
+                                <option value="EXCUSED">Excused</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Notes:</label>
+                            <input type="text" id="attendanceNotes" placeholder="Enter notes">
+                        </div>
+                        <button class="btn" onclick="addAttendance()">💾 Save Attendance</button>
+                        <button class="btn" onclick="hideAddAttendanceForm()" style="background: #6c757d;">❌ Cancel</button>
+                    </div>
+                    
+                    <div id="attendanceData" class="data-display"></div>
+                </div>
+            </div>
+
             <!-- API Testing Tab -->
             <div id="api" class="tab-content">
                 <div class="card">
@@ -338,14 +490,17 @@
                         <h4>Available Endpoints:</h4>
                         <button class="btn" onclick="testEndpoint('/api/schools', 'GET')">GET /api/schools</button>
                         <button class="btn" onclick="testEndpoint('/api/students', 'GET')">GET /api/students</button>
-                        <button class="btn" onclick="testEndpoint('/api/schools/1', 'GET')">GET /api/schools/1</button>
-                        <button class="btn" onclick="testEndpoint('/api/students/1', 'GET')">GET /api/students/1</button>
-                        <button class="btn" onclick="testEndpoint('/', 'GET')">GET / (Home)</button>
+                        <button class="btn" onclick="testEndpoint('/api/teachers', 'GET')">GET /api/teachers</button>
+                        <button class="btn" onclick="testEndpoint('/api/courses', 'GET')">GET /api/courses</button>
+                        <button class="btn" onclick="testEndpoint('/api/grades', 'GET')">GET /api/grades</button>
+                        <button class="btn" onclick="testEndpoint('/api/attendance', 'GET')">GET /api/attendance</button>
+                        <button class="btn" onclick="testEndpoint('/api/dashboard/stats', 'GET')">GET /api/dashboard/stats</button>
+                        <button class="btn" onclick="testEndpoint('/api/dashboard/analytics', 'GET')">GET /api/dashboard/analytics</button>
                     </div>
                     
                     <div id="apiResults" class="data-display"></div>
                 </div>
-            </div>
+            </div>""
         </div>
     </div>
 
@@ -390,11 +545,28 @@
         // Dashboard functions
         async function loadDashboardData() {
             try {
-                const schools = await apiCall('/api/schools');
-                const students = await apiCall('/api/students');
+                const stats = await apiCall('/api/dashboard/stats');
                 
-                document.getElementById('schoolCount').textContent = Array.isArray(schools) ? schools.length : '0';
-                document.getElementById('studentCount').textContent = Array.isArray(students) ? students.length : '0';
+                if (stats && !stats.error) {
+                    document.getElementById('schoolCount').textContent = stats.totalSchools || '0';
+                    document.getElementById('studentCount').textContent = stats.totalStudents || '0';
+                    document.getElementById('teacherCount').textContent = stats.totalTeachers || '0';
+                    document.getElementById('courseCount').textContent = stats.totalCourses || '0';
+                    document.getElementById('gradeCount').textContent = stats.totalGrades || '0';
+                } else {
+                    // Fallback to individual API calls
+                    const schools = await apiCall('/api/schools');
+                    const students = await apiCall('/api/students');
+                    const teachers = await apiCall('/api/teachers');
+                    const courses = await apiCall('/api/courses');
+                    const grades = await apiCall('/api/grades');
+                    
+                    document.getElementById('schoolCount').textContent = Array.isArray(schools) ? schools.length : '0';
+                    document.getElementById('studentCount').textContent = Array.isArray(students) ? students.length : '0';
+                    document.getElementById('teacherCount').textContent = Array.isArray(teachers) ? teachers.length : '0';
+                    document.getElementById('courseCount').textContent = Array.isArray(courses) ? courses.length : '0';
+                    document.getElementById('gradeCount').textContent = Array.isArray(grades) ? grades.length : '0';
+                }
             } catch (error) {
                 console.error('Error loading dashboard data:', error);
             }
@@ -476,6 +648,134 @@
             element.innerHTML = `<div class="${className}">${typeof message === 'string' ? message : JSON.stringify(message)}</div>`;
         }
         
+        // Teacher functions
+        async function loadTeachers() {
+            const data = await apiCall('/api/teachers');
+            displayData('teachersData', data, 'Teachers');
+        }
+        
+        function showAddTeacherForm() {
+            document.getElementById('addTeacherForm').style.display = 'block';
+        }
+        
+        function hideAddTeacherForm() {
+            document.getElementById('addTeacherForm').style.display = 'none';
+        }
+        
+        async function addTeacher() {
+            const teacherData = {
+                firstName: document.getElementById('teacherFirstName').value,
+                lastName: document.getElementById('teacherLastName').value,
+                email: document.getElementById('teacherEmail').value,
+                employeeId: document.getElementById('teacherEmployeeId').value,
+                department: document.getElementById('teacherDepartment').value,
+                phoneNumber: document.getElementById('teacherPhone').value,
+                hireDate: new Date().toISOString().split('T')[0]
+            };
+            
+            const result = await apiCall('/api/teachers', 'POST', teacherData);
+            displayMessage('teachersData', result, 'success');
+            hideAddTeacherForm();
+            loadTeachers();
+        }
+        
+        // Course functions
+        async function loadCourses() {
+            const data = await apiCall('/api/courses');
+            displayData('coursesData', data, 'Courses');
+        }
+        
+        function showAddCourseForm() {
+            document.getElementById('addCourseForm').style.display = 'block';
+        }
+        
+        function hideAddCourseForm() {
+            document.getElementById('addCourseForm').style.display = 'none';
+        }
+        
+        async function addCourse() {
+            const courseData = {
+                name: document.getElementById('courseName').value,
+                courseCode: document.getElementById('courseCode').value,
+                description: document.getElementById('courseDescription').value,
+                credits: parseInt(document.getElementById('courseCredits').value),
+                startDate: new Date().toISOString().split('T')[0],
+                endDate: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+            };
+            
+            const result = await apiCall('/api/courses', 'POST', courseData);
+            displayMessage('coursesData', result, 'success');
+            hideAddCourseForm();
+            loadCourses();
+        }
+        
+        // Grade functions
+        async function loadGrades() {
+            const data = await apiCall('/api/grades');
+            displayData('gradesData', data, 'Grades');
+        }
+        
+        function showAddGradeForm() {
+            document.getElementById('addGradeForm').style.display = 'block';
+        }
+        
+        function hideAddGradeForm() {
+            document.getElementById('addGradeForm').style.display = 'none';
+        }
+        
+        async function addGrade() {
+            const gradeData = {
+                assignmentName: document.getElementById('gradeAssignmentName').value,
+                assignmentType: document.getElementById('gradeAssignmentType').value,
+                score: parseFloat(document.getElementById('gradeScore').value),
+                maxScore: parseFloat(document.getElementById('gradeMaxScore').value),
+                comments: document.getElementById('gradeComments').value
+            };
+            
+            const result = await apiCall('/api/grades', 'POST', gradeData);
+            displayMessage('gradesData', result, 'success');
+            hideAddGradeForm();
+            loadGrades();
+        }
+        
+        // Attendance functions
+        async function loadAttendance() {
+            const data = await apiCall('/api/attendance');
+            displayData('attendanceData', data, 'Attendance Records');
+        }
+        
+        function showAddAttendanceForm() {
+            document.getElementById('addAttendanceForm').style.display = 'block';
+            document.getElementById('attendanceDate').value = new Date().toISOString().split('T')[0];
+        }
+        
+        function hideAddAttendanceForm() {
+            document.getElementById('addAttendanceForm').style.display = 'none';
+        }
+        
+        async function addAttendance() {
+            const attendanceData = {
+                date: document.getElementById('attendanceDate').value,
+                status: document.getElementById('attendanceStatus').value,
+                notes: document.getElementById('attendanceNotes').value
+            };
+            
+            const result = await apiCall('/api/attendance', 'POST', attendanceData);
+            displayMessage('attendanceData', result, 'success');
+            hideAddAttendanceForm();
+            loadAttendance();
+        }
+        
+        async function quickCheckIn() {
+            const attendanceData = {
+                notes: 'Quick check-in from dashboard'
+            };
+            
+            const result = await apiCall('/api/attendance/checkin', 'POST', attendanceData);
+            displayMessage('attendanceData', result, 'success');
+            loadAttendance();
+        }
+
         // MongoDB Info function
         function showMongoInfo() {
             alert('Connected to MongoDB Atlas Cloud Database\nDatabase: brelinx_edusuite\nData is persistent and secure!');

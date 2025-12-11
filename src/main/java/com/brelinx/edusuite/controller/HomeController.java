@@ -26,8 +26,12 @@ public class HomeController {
         response.put("endpoints", Map.of(
             "schools", "/api/schools",
             "students", "/api/students",
-            "swagger", "/swagger-ui.html",
-            "h2-console", "/h2-console"
+            "teachers", "/api/teachers",
+            "courses", "/api/courses",
+            "grades", "/api/grades",
+            "attendance", "/api/attendance",
+            "dashboard", "/api/dashboard",
+            "swagger", "/swagger-ui.html"
         ));
         return response;
     }
@@ -39,14 +43,23 @@ public class HomeController {
         response.put("name", "Brelinx EduSuite API");
         response.put("version", "1.0.0");
         response.put("description", "Student Management System API");
-        response.put("endpoints", Map.of(
-            "GET /api/schools", "Get all schools",
-            "GET /api/schools/{id}", "Get school by ID",
-            "POST /api/schools", "Create new school",
-            "GET /api/students", "Get all students",
-            "GET /api/students/{id}", "Get student by ID",
-            "POST /api/students", "Create new student"
-        ));
+        Map<String, String> endpoints = new HashMap<>();
+        endpoints.put("GET /api/schools", "Get all schools");
+        endpoints.put("POST /api/schools", "Create new school");
+        endpoints.put("GET /api/students", "Get all students");
+        endpoints.put("POST /api/students", "Create new student");
+        endpoints.put("GET /api/teachers", "Get all teachers");
+        endpoints.put("POST /api/teachers", "Create new teacher");
+        endpoints.put("GET /api/courses", "Get all courses");
+        endpoints.put("POST /api/courses", "Create new course");
+        endpoints.put("GET /api/grades", "Get all grades");
+        endpoints.put("POST /api/grades", "Create new grade");
+        endpoints.put("GET /api/attendance", "Get attendance records");
+        endpoints.put("POST /api/attendance", "Record attendance");
+        endpoints.put("GET /api/dashboard/stats", "Get dashboard statistics");
+        endpoints.put("GET /api/dashboard/analytics", "Get analytics data");
+        
+        response.put("endpoints", endpoints);
         return response;
     }
 }
