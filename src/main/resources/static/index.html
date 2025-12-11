@@ -292,7 +292,11 @@
                     <p>Test the REST API endpoints directly:</p>
                     
                     <div style="margin: 20px 0;">
-                        <h4>Available Endpoints:</h4>
+                        <h4>Quick Tests:</h4>
+                        <button class="btn" onclick="testAllEndpoints()">🔄 Test All Endpoints</button>
+                        <button class="btn" onclick="testSystemHealth()">❤️ System Health Check</button>
+                        
+                        <h4 style="margin-top: 20px;">Individual Endpoints:</h4>
                         <button class="btn" onclick="testEndpoint('/api/schools', 'GET')">GET /api/schools</button>
                         <button class="btn" onclick="testEndpoint('/api/students', 'GET')">GET /api/students</button>
                         <button class="btn" onclick="testEndpoint('/api/teachers', 'GET')">GET /api/teachers</button>
