@@ -1,4 +1,6 @@
-// Attendance management functions
+// Attendance management functionality for Brelinx EduSuite
+
+// Attendance functions
 async function loadAttendance() {
     const data = await apiCall('/api/attendance');
     displayData('attendanceData', data, 'Attendance Records');
@@ -11,13 +13,6 @@ function showAddAttendanceForm() {
 
 function hideAddAttendanceForm() {
     document.getElementById('addAttendanceForm').style.display = 'none';
-    clearAttendanceForm();
-}
-
-function clearAttendanceForm() {
-    document.getElementById('attendanceDate').value = '';
-    document.getElementById('attendanceStatus').value = 'PRESENT';
-    document.getElementById('attendanceNotes').value = '';
 }
 
 async function addAttendance() {
@@ -27,19 +22,10 @@ async function addAttendance() {
         notes: document.getElementById('attendanceNotes').value
     };
     
-    if (!attendanceData.date) {
-        displayMessage('attendanceData', 'Please select a date', 'error');
-        return;
-    }
-    
     const result = await apiCall('/api/attendance', 'POST', attendanceData);
-    if (result.error) {
-        displayMessage('attendanceData', result.error, 'error');
-    } else {
-        displayMessage('attendanceData', 'Attendance recorded successfully!', 'success');
-        hideAddAttendanceForm();
-        loadAttendance();
-    }
+    displayMessage('attendanceData', result, 'success');
+    hideAddAttendanceForm();
+    loadAttendance();
 }
 
 async function quickCheckIn() {
@@ -48,10 +34,6 @@ async function quickCheckIn() {
     };
     
     const result = await apiCall('/api/attendance/checkin', 'POST', attendanceData);
-    if (result.error) {
-        displayMessage('attendanceData', result.error, 'error');
-    } else {
-        displayMessage('attendanceData', 'Check-in successful!', 'success');
-        loadAttendance();
-    }
+    displayMessage('attendanceData', result, 'success');
+    loadAttendance();
 }

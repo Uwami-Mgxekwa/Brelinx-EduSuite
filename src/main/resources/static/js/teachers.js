@@ -1,4 +1,6 @@
-// Teacher management functions
+// Teacher management functionality for Brelinx EduSuite
+
+// Teacher functions
 async function loadTeachers() {
     const data = await apiCall('/api/teachers');
     displayData('teachersData', data, 'Teachers');
@@ -10,16 +12,6 @@ function showAddTeacherForm() {
 
 function hideAddTeacherForm() {
     document.getElementById('addTeacherForm').style.display = 'none';
-    clearTeacherForm();
-}
-
-function clearTeacherForm() {
-    document.getElementById('teacherFirstName').value = '';
-    document.getElementById('teacherLastName').value = '';
-    document.getElementById('teacherEmail').value = '';
-    document.getElementById('teacherEmployeeId').value = '';
-    document.getElementById('teacherDepartment').value = '';
-    document.getElementById('teacherPhone').value = '';
 }
 
 async function addTeacher() {
@@ -33,17 +25,8 @@ async function addTeacher() {
         hireDate: new Date().toISOString().split('T')[0]
     };
     
-    if (!teacherData.firstName || !teacherData.lastName || !teacherData.email || !teacherData.employeeId) {
-        displayMessage('teachersData', 'Please fill in required fields (Name, Email, Employee ID)', 'error');
-        return;
-    }
-    
     const result = await apiCall('/api/teachers', 'POST', teacherData);
-    if (result.error) {
-        displayMessage('teachersData', result.error, 'error');
-    } else {
-        displayMessage('teachersData', 'Teacher added successfully!', 'success');
-        hideAddTeacherForm();
-        loadTeachers();
-    }
+    displayMessage('teachersData', result, 'success');
+    hideAddTeacherForm();
+    loadTeachers();
 }
