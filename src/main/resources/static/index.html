@@ -22,6 +22,7 @@
             <button class="nav-tab" onclick="showTab('courses')">Courses</button>
             <button class="nav-tab" onclick="showTab('grades')">Grades</button>
             <button class="nav-tab" onclick="showTab('attendance')">Attendance</button>
+            <button class="nav-tab" onclick="showTab('branding')">Branding</button>
             <button class="nav-tab" onclick="showTab('api')">API Testing</button>
         </div>
         
@@ -282,6 +283,70 @@
                     </div>
                     
                     <div id="attendanceData" class="data-display"></div>
+                </div>
+            </div>
+
+            <!-- Branding Tab -->
+            <div id="branding" class="tab-content">
+                <div class="card">
+                    <h3>🎨 School Branding & Customization</h3>
+                    <p>Customize the system for your school's brand identity:</p>
+                    
+                    <button class="btn" onclick="loadBranding()">📋 Load Current Branding</button>
+                    <button class="btn" onclick="showBrandingForm()">🎨 Customize Branding</button>
+                    <button class="btn" onclick="previewBranding()">👁️ Preview Changes</button>
+                    
+                    <div id="brandingForm" style="display: none; margin-top: 20px;">
+                        <h4>Customize School Branding</h4>
+                        <div class="form-group">
+                            <label>School Name:</label>
+                            <input type="text" id="brandingSchoolName" placeholder="Enter school name">
+                        </div>
+                        <div class="form-group">
+                            <label>Logo URL:</label>
+                            <input type="url" id="brandingLogoUrl" placeholder="Enter logo URL">
+                        </div>
+                        <div class="form-group">
+                            <label>Primary Color:</label>
+                            <input type="color" id="brandingPrimaryColor" value="#4facfe">
+                        </div>
+                        <div class="form-group">
+                            <label>Secondary Color:</label>
+                            <input type="color" id="brandingSecondaryColor" value="#00f2fe">
+                        </div>
+                        <div class="form-group">
+                            <label>Welcome Message:</label>
+                            <input type="text" id="brandingWelcomeMessage" placeholder="Enter welcome message">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Email:</label>
+                            <input type="email" id="brandingContactEmail" placeholder="Enter contact email">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Phone:</label>
+                            <input type="tel" id="brandingContactPhone" placeholder="Enter contact phone">
+                        </div>
+                        <div class="form-group">
+                            <label>Website:</label>
+                            <input type="url" id="brandingWebsite" placeholder="Enter website URL">
+                        </div>
+                        <button class="btn" onclick="saveBranding()">💾 Save Branding</button>
+                        <button class="btn" onclick="hideBrandingForm()" style="background: #6c757d;">❌ Cancel</button>
+                    </div>
+                    
+                    <div id="brandingData" class="data-display"></div>
+                    
+                    <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                        <h4>💼 White-Label Solution</h4>
+                        <p>This system is designed to be sold to schools as a white-label solution:</p>
+                        <ul style="margin: 15px 0; padding-left: 20px;">
+                            <li>Customize branding for each school client</li>
+                            <li>Change logos, colors, and messaging</li>
+                            <li>Multi-tenant architecture ready</li>
+                            <li>Professional appearance for any institution</li>
+                            <li>Easy deployment and customization</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 

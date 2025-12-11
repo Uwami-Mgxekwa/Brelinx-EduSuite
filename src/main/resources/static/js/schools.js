@@ -1,4 +1,6 @@
-// School management functions
+// School management functionality for Brelinx EduSuite
+
+// School functions
 async function loadSchools() {
     const data = await apiCall('/api/schools');
     displayData('schoolsData', data, 'Schools');
@@ -10,13 +12,6 @@ function showAddSchoolForm() {
 
 function hideAddSchoolForm() {
     document.getElementById('addSchoolForm').style.display = 'none';
-    clearSchoolForm();
-}
-
-function clearSchoolForm() {
-    document.getElementById('schoolName').value = '';
-    document.getElementById('schoolAddress').value = '';
-    document.getElementById('schoolContact').value = '';
 }
 
 async function addSchool() {
@@ -26,17 +21,8 @@ async function addSchool() {
         contact: document.getElementById('schoolContact').value
     };
     
-    if (!schoolData.name || !schoolData.address || !schoolData.contact) {
-        displayMessage('schoolsData', 'Please fill in all fields', 'error');
-        return;
-    }
-    
     const result = await apiCall('/api/schools', 'POST', schoolData);
-    if (result.error) {
-        displayMessage('schoolsData', result.error, 'error');
-    } else {
-        displayMessage('schoolsData', 'School added successfully!', 'success');
-        hideAddSchoolForm();
-        loadSchools();
-    }
+    displayMessage('schoolsData', result, 'success');
+    hideAddSchoolForm();
+    loadSchools();
 }
