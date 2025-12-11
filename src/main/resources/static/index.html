@@ -107,7 +107,7 @@
                     <button class="btn" onclick="loadStudents()">📋 Load All Students</button>
                     <button class="btn" onclick="showAddStudentForm()">➕ Add New Student</button>
                     
-                    <div id="addStudentForm" style="display: none; margin-top: 20px;">
+                    <div id="addStudentForm" class="form-container">
                         <h4>Add New Student</h4>
                         <div class="form-group">
                             <label>First Name:</label>
@@ -126,7 +126,7 @@
                             <input type="text" id="studentId" placeholder="Enter student ID">
                         </div>
                         <button class="btn" onclick="addStudent()">💾 Save Student</button>
-                        <button class="btn" onclick="hideAddStudentForm()" style="background: #6c757d;">❌ Cancel</button>
+                        <button class="btn btn-secondary" onclick="hideAddStudentForm()">❌ Cancel</button>
                     </div>
                     
                     <div id="studentsData" class="data-display"></div>
