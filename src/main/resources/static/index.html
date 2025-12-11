@@ -140,7 +140,7 @@
                     <button class="btn" onclick="loadTeachers()">📋 Load All Teachers</button>
                     <button class="btn" onclick="showAddTeacherForm()">➕ Add New Teacher</button>
                     
-                    <div id="addTeacherForm" style="display: none; margin-top: 20px;">
+                    <div id="addTeacherForm" class="form-container">
                         <h4>Add New Teacher</h4>
                         <div class="form-group">
                             <label>First Name:</label>
@@ -167,7 +167,7 @@
                             <input type="text" id="teacherPhone" placeholder="Enter phone number">
                         </div>
                         <button class="btn" onclick="addTeacher()">💾 Save Teacher</button>
-                        <button class="btn" onclick="hideAddTeacherForm()" style="background: #6c757d;">❌ Cancel</button>
+                        <button class="btn btn-secondary" onclick="hideAddTeacherForm()">❌ Cancel</button>
                     </div>
                     
                     <div id="teachersData" class="data-display"></div>
@@ -181,7 +181,7 @@
                     <button class="btn" onclick="loadCourses()">📋 Load All Courses</button>
                     <button class="btn" onclick="showAddCourseForm()">➕ Add New Course</button>
                     
-                    <div id="addCourseForm" style="display: none; margin-top: 20px;">
+                    <div id="addCourseForm" class="form-container">
                         <h4>Add New Course</h4>
                         <div class="form-group">
                             <label>Course Name:</label>
@@ -200,7 +200,7 @@
                             <input type="number" id="courseCredits" placeholder="Enter credits">
                         </div>
                         <button class="btn" onclick="addCourse()">💾 Save Course</button>
-                        <button class="btn" onclick="hideAddCourseForm()" style="background: #6c757d;">❌ Cancel</button>
+                        <button class="btn btn-secondary" onclick="hideAddCourseForm()">❌ Cancel</button>
                     </div>
                     
                     <div id="coursesData" class="data-display"></div>
@@ -214,7 +214,7 @@
                     <button class="btn" onclick="loadGrades()">📋 Load All Grades</button>
                     <button class="btn" onclick="showAddGradeForm()">➕ Add New Grade</button>
                     
-                    <div id="addGradeForm" style="display: none; margin-top: 20px;">
+                    <div id="addGradeForm" class="form-container">
                         <h4>Add New Grade</h4>
                         <div class="form-group">
                             <label>Assignment Name:</label>
@@ -222,7 +222,7 @@
                         </div>
                         <div class="form-group">
                             <label>Assignment Type:</label>
-                            <select id="gradeAssignmentType" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                            <select id="gradeAssignmentType">
                                 <option value="EXAM">Exam</option>
                                 <option value="QUIZ">Quiz</option>
                                 <option value="HOMEWORK">Homework</option>
@@ -243,7 +243,7 @@
                             <input type="text" id="gradeComments" placeholder="Enter comments">
                         </div>
                         <button class="btn" onclick="addGrade()">💾 Save Grade</button>
-                        <button class="btn" onclick="hideAddGradeForm()" style="background: #6c757d;">❌ Cancel</button>
+                        <button class="btn btn-secondary" onclick="hideAddGradeForm()">❌ Cancel</button>
                     </div>
                     
                     <div id="gradesData" class="data-display"></div>
@@ -258,7 +258,7 @@
                     <button class="btn" onclick="showAddAttendanceForm()">➕ Record Attendance</button>
                     <button class="btn" onclick="quickCheckIn()">⚡ Quick Check-In</button>
                     
-                    <div id="addAttendanceForm" style="display: none; margin-top: 20px;">
+                    <div id="addAttendanceForm" class="form-container">
                         <h4>Record Attendance</h4>
                         <div class="form-group">
                             <label>Date:</label>
@@ -266,7 +266,7 @@
                         </div>
                         <div class="form-group">
                             <label>Status:</label>
-                            <select id="attendanceStatus" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                            <select id="attendanceStatus">
                                 <option value="PRESENT">Present</option>
                                 <option value="ABSENT">Absent</option>
                                 <option value="LATE">Late</option>
@@ -278,7 +278,7 @@
                             <input type="text" id="attendanceNotes" placeholder="Enter notes">
                         </div>
                         <button class="btn" onclick="addAttendance()">💾 Save Attendance</button>
-                        <button class="btn" onclick="hideAddAttendanceForm()" style="background: #6c757d;">❌ Cancel</button>
+                        <button class="btn btn-secondary" onclick="hideAddAttendanceForm()">❌ Cancel</button>
                     </div>
                     
                     <div id="attendanceData" class="data-display"></div>
